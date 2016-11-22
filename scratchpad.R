@@ -28,7 +28,7 @@
 # 
 # # Working example ---------------------------------------------------------
 # 
-# GeomSameAsBar <- ggproto("namedoesntmatter", GeomBar)
+# GeomSameAsBar <- ggproto("GeomSameAsBar", GeomBar)
 # 
 # geom_same_as_bar <- function(stat = "count", width = NULL) {
 #   layer(geom = GeomSameAsBar, stat = stat, data = NULL, position = "stack",
@@ -45,7 +45,21 @@
 # # Scratchpad --------------------------------------------------------------
 # p + geom_bar(stat = "identity")
 
-GeomBarMekko <- ggproto("namedoesntmatter", GeomBar)
+"%||%" <- function(a, b) {
+  if (!is.null(a)) a else b
+}
+
+GeomBarMekko <- ggproto("GeomBarMekko", GeomBar,
+                        junk = function() {},
+                        setup_data = function(data, params) {
+                          data$width <- data$width %||%
+                            params$width %||% (resolution(data$x, FALSE) * 0.9)
+                          transform(data,
+                                    ymin = pmin(y, 0), ymax = pmax(y, 0),
+                                    xmin = x - width / 2, xmax = x + width / 2, width = NULL
+                          )
+                        }
+                        )
 
 geom_bar_mekko <- function(mapping = NULL, data = NULL,
   stat = "count", position = "stack", width = NULL,
@@ -54,18 +68,15 @@ geom_bar_mekko <- function(mapping = NULL, data = NULL,
   
   # do something with the data here or in GeomSameAsBar?
   # could have an if statement based on the stat (count or identity)
-  if(stat == "count") {
-    print("stat is count")
-  } else if(stat == "identity") {
-    print("stat is identity")
-  } else {
-    stop("stat must be count or identity")
-  }
-  
-  # data2 <- data %>%
-  #   mutate(w = 0.25)
-  print(nrow(data))
-  print(head(data))
+
+  # if(stat == "count") {
+  #   print("stat is count")
+  # } else if(stat == "identity") {
+  #   print("stat is identity")
+  # } else {
+  #   stop("stat must be count or identity")
+  # }
+  # browser()
   
   layer(data = data,
     mapping = mapping,
@@ -81,8 +92,10 @@ geom_bar_mekko <- function(mapping = NULL, data = NULL,
 #   geom_bar_mekko(stat = "count", width = 0.5) + 
 #   facet_wrap(~ color)
 
-# ggplot(df, aes(x = cut, y = count, fill = clarity)) + 
-#   geom_bar_mekko(stat = "identity", width = 0.75)
+# ggplot(df, aes(x = cut, y = count, fill = clarity)) +
+#   geom_bar_mekko(stat = "identity", width = 0.25)
 
-ggplot(df, aes(x = cut, y = count, fill = clarity)) + 
+p2 <- ggplot(df, aes(x = cut, y = count, fill = clarity)) +
   geom_bar_mekko(stat = "identity")
+p2 
+# str(p2)
