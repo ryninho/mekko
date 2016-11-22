@@ -36,3 +36,7 @@ bmx
 bmx + guides(fill=guide_legend(title=NULL))
 bmx + labs(title = "New plot title!")
 
+# does NOT work with ggplotly- width is the only thing missing, though it
+# has the negative --> positive bug seen before in plotly for geom_bar
+# (so probably couldn't use it even if that's fixed)
+# ggplotly()
