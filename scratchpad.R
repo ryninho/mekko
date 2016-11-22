@@ -34,7 +34,7 @@ GeomBarMekko <- ggproto("GeomBarMekko", GeomBar,
                         draw_panel = function(self, data, panel_scales, coord) {
                           panel_scales$x.range <- c(0,1) # TODO: need this?
                           coords <- coord$transform(data, panel_scales)
-                          browser()
+                          # browser()
                             ggname("geom_rect", rectGrob(
                               coords$xmin, coords$ymax,
                               width = coords$xmax - coords$xmin,
