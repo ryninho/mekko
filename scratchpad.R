@@ -1,10 +1,6 @@
 library(ggplot2)
 library(dplyr)
 
-"%||%" <- function(a, b) {
-  if (!is.null(a)) a else b
-}
-
 library(tibble)
 df <- state.x77 %>% data.frame %>% 
   rownames_to_column("State") %>% select(State, Population, Illiteracy) %>%
@@ -22,7 +18,6 @@ df <- state.x77 %>% data.frame %>%
 
 GeomBarMekko <- ggproto("GeomBarMekko", GeomBar,
                         setup_data = function(data, params) {
-                          # data$width <- data$width / 29500
                           w <- data$width # save for now
                           pos <- 0.5 * (cumsum(w) + cumsum(c(0, w[-length(w)])))
                           transform(data,
@@ -52,12 +47,12 @@ geom_bar_mekko <- function(mapping = NULL, data = NULL,
 }
 
 # before: with geom_bar
-df %>% ggplot(aes(x = State, y = Illiteracy, fill = Region, width = .75)) +
-  geom_bar(position = "identity", stat = "identity")
-
-# with geom_bar, can't use variable width effectively
-df %>% ggplot(aes(x = State, y = Illiteracy, fill = Region, width = Population)) +
-  geom_bar(position = "identity", stat = "identity")
+# df %>% ggplot(aes(x = State, y = Illiteracy, fill = Region, width = .75)) +
+#   geom_bar(position = "identity", stat = "identity")
+# 
+# # with geom_bar, can't use variable width effectively
+# df %>% ggplot(aes(x = State, y = Illiteracy, fill = Region, width = Population)) +
+#   geom_bar(position = "identity", stat = "identity")
 
 # with geom_bar_mekko, side-by-side comparisons scaled for importance stand out
 df %>% ggplot(aes(x = State, y = Illiteracy, fill = Region, width = Population)) + 
