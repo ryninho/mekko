@@ -6,7 +6,7 @@ library(tibble)
 midwest %>% group_by(state, inmetro) %>% summarize(pop = sum(poptotal))
 
 # Bar mekko example
-state.x77 %>% data.frame %>% 
+df <- state.x77 %>% data.frame %>% 
   rownames_to_column("State") %>% select(State, Population, Illiteracy)
 
 plot(state.x77 %>% data.frame %>% extract2("Population"), state.x77 %>% 
