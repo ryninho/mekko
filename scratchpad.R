@@ -1,81 +1,135 @@
-library(ggplot2)
+library(ggplot2) # TODO: is this the right place for this?
 library(dplyr)
-library(grid)
 
-library(tibble)
-df <- state.x77 %>% data.frame %>% 
-  rownames_to_column("State") %>% select(State, Population, Illiteracy) %>%
-  head(5) %>% 
-  mutate(Illiteracy = ifelse(State == "Alabama", -Illiteracy, Illiteracy)) %>%
-  mutate(Region = ifelse(State %in% c("Alabama", "Arkansas"), "South", "West"))
+hec <- HairEyeColor %>% data.frame %>% filter(Sex == "Male") %>% select(-Sex)
 
-ggname <- function(prefix, grob) {
-  grob$name <- grobName(grob, prefix)
-  grob
-}
+# standard example
+ggplot(hec, aes(x = Eye, y = Freq, fill = Hair)) + 
+  geom_bar(stat = "identity", position = "fill")
 
-#' TODO:
-#' 1) [DONE] set positions
-#' 2) [DONE] use them for widths
-#' 3) use them with scale_x_continuous to set the labels
-#' 4) make sure the legends are in the right place (same order as y categories)
-#' 5) sort from largest to smallest (or make that an option?)
-#' 6) suppress warnings
+# ... can use width, but...
+ggplot(hec, aes(x = Eye, y = Freq, fill = Hair, width = c(.1, .1, .1, .1, .6, .6, .6, .6, 1, 1, 1, 1, .5, .5, .5, .5))) + 
+  geom_bar(stat = "identity", position = "fill")
 
-GeomBarMekko <- ggproto("GeomBarMekko", GeomBar,
-                        setup_data = function(data, params) {
-                          data$width <- data$width / sum(data$width) # TODO: need this?
-                          pos <- 0.5 * (cumsum(data$width) + cumsum(c(0, data$width[-length(data$width)])))
-                          transform(data,
-                                    ymin = pmin(y, 0), ymax = pmax(y, 0),
-                                    xmin = pos - width / 2, xmax = pos + width / 2, width = NULL
-                          )
-                        },
-                        draw_panel = function(self, data, panel_scales, coord) {
-                          panel_scales$x.range <- c(0,1) # TODO: need this?
-                          coords <- coord$transform(data, panel_scales)
-                          # browser()
-                            ggname("geom_rect", rectGrob(
-                              coords$xmin, coords$ymax,
-                              width = coords$xmax - coords$xmin,
-                              height = coords$ymax - coords$ymin,
-                              default.units = "native",
-                              just = c("left", "top"),
-                              gp = gpar(
-                                col = coords$colour,
-                                fill = alpha(coords$fill, coords$alpha),
-                                lwd = coords$size * .pt,
-                                lty = coords$linetype,
-                                lineend = "butt"
-                              )
-                            ))
-                        }
+# ... only with a few categories and nothing too large!
+ggplot(hec, aes(x = Eye, y = Freq, fill = Hair, width = c(.1, .1, .1, .1, 6, 6, 6, 6, 1, 1, 1, 1, .5, .5, .5, .5))) + 
+  geom_bar(stat = "identity", position = "fill")
+
+# ... and fails if trying to place the labels since axis is discrete
+ggplot(hec, aes(x = Eye, y = Freq, fill = Hair, width = c(.1, .1, .1, .1, 6, 6, 6, 6, 1, 1, 1, 1, .5, .5, .5, .5))) + 
+  geom_bar(stat = "identity", position = "fill") + scale_x_continuous(breaks = c(.1, 6.1, 7.1, 7.6), labels = c("Brown", "Blue", "Hazel", "Green"))
+
+
+
+df <- hec %>% rename(x = Eye, y = Hair, width = Freq) # just for function development
+
+df <- df %>% split(df$y) %>% lapply(
+  mutate, 
+  ymin = c(0, head(cumsum(width), length(width) - 1)),
+  ymax = cumsum(width),
+  ycenter = (ymin + ymax) / 2
+) %>% 
+  bind_rows
+
+x_widths <- df %>% group_by(x) %>% 
+  summarize(x_width = sum(width)) %>% 
+  mutate(
+    wmin = c(0, head(cumsum(x_width), length(x_width) - 1)),
+    wmax = cumsum(x_width),
+    wcenter = (wmin + wmax) / 2
+  )
+
+df <- df %>% inner_join(x_widths, by = "x")
+
+df <- df %>% arrange(x, y, width)
+
+# geom_tile- need to rename x, y axes
+ggplot(df, aes(x = wcenter, y = ycenter, width = x_width, height = width, fill = y)) + geom_tile()
+
+# alt: geom_rect- no x, y axes, need to rename legend title
+ggplot(df, aes(xmin = wmin, xmax = wmax, ymin = ymin, ymax = ymax, fill = y)) + geom_rect()
+
+y_heights
+df %>% mutate(
+  wmin = c(0, head(cumsum(width), length(width) - 1)),
+  wmax = cumsum(width)
 )
 
+  
+  df$xmin = df$xmin / max(df$xmax)
+  dfmax = df$xmax / max(df$xmax)
+  
+  p = ggplot(df, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax))
+  
+  p = p + geom_rect(aes_string(fill=secondary_dim_name))
+  
+  # replacing x axis numbers with words
+  breaks = unique(rowMeans(toy[,c('xmin','xmax')]))
+  labels = as.character(unique(toy[[dim_name]]))
+  p = p + scale_x_continuous(breaks = breaks, labels = labels)
+  
+  p
 
-geom_bar_mekko <- function(mapping = NULL, data = NULL,
-  stat = "identity", position = "stack", width = NULL,
-  ...,
-  na.rm = FALSE, show.legend = NA, inherit.aes = TRUE) {
+# marimekko(hec, Hair, Eye, Freq)
+marimekko(hec, Eye, Hair, Freq)
 
-  layer(data = data,
-    mapping = mapping,
-      stat = stat,
-      geom = GeomBarMekko,
-      position = position,
-      params = list(...)
+
+# do-over -----------------------------------------------------------------
+
+
+df <- hec %>% rename(x = Eye, y = Hair, width = Freq) # just for function development
+
+x_widths <- df %>% group_by(x) %>% 
+  summarize(x_width = sum(width)) %>% 
+  mutate(
+    wmin = c(0, head(cumsum(x_width), length(x_width) - 1)),
+    wmax = cumsum(x_width),
+    wcenter = (wmin + wmax) / 2
   )
-}
 
-# before: with geom_bar
-# df %>% ggplot(aes(x = State, y = Illiteracy, fill = Region, width = .75)) +
-#   geom_bar(position = "identity", stat = "identity")
-# 
-# # with geom_bar, can't use variable width effectively
-# df %>% ggplot(aes(x = State, y = Illiteracy, fill = Region, width = Population)) +
-#   geom_bar(position = "identity", stat = "identity")
+df <- df %>% inner_join(x_widths, by = "x")
 
-# with geom_bar_mekko, side-by-side comparisons scaled for importance stand out
-df %>% ggplot(aes(x = State, y = Illiteracy, fill = Region, width = Population)) + 
-  geom_bar_mekko(position = "identity")
+# df <- df %>% arrange(x, y, width) # necessary?
 
+df1 <- df %>% group_by(x) %>% 
+  do(mutate(., 
+    ymin = c(0, head(cumsum(width), length(width) - 1)),
+    ymax = cumsum(width))) %>%
+  ungroup
+arrange(df1, x, y)
+
+p <- ggplot(df1, aes(ymin = ymin, ymax = ymax,
+                      xmin = wmin, xmax = wmax, fill = y))
+p
+p1 <- p + geom_rect()
+p1
+
+# Let’s try that again... -------------------------------------------------
+
+df <- data.frame(segment = c("A", "B", "C", "D"), 
+                 segpct = c(40, 30, 20, 10), 
+                 Alpha = c(60, 40, 30, 25), Beta = c(25, 30, 30, 25),
+                 Gamma = c(10, 20, 20, 25), Delta = c(5, 10, 20, 25))
+
+df
+
+df$xmax <- cumsum(df$segpct)
+df$xmin <- df$xmax - df$segpct
+df$segpct <- NULL
+
+dfm <- reshape2::melt(df, id = c("segment", "xmin", "xmax"))
+
+dfm1 <- dfm %>% group_by(segment) %>% 
+  do(mutate(., 
+    ymax = cumsum(value),
+    ymin = ymax - value))
+
+
+dfm1$xtext <- with(dfm1, xmin + (xmax - xmin)/2)
+dfm1$ytext <- with(dfm1, ymin + (ymax - ymin)/2)
+
+p <- ggplot(dfm1, aes(ymin = ymin, ymax = ymax,
+                      xmin = xmin, xmax = xmax, fill = variable))
+p
+p1 <- p + geom_rect(colour = I("grey"))
+p1

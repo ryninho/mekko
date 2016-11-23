@@ -1,3 +1,5 @@
+library(ggplot2) # TODO: is this the right place for this?
+
 #' Calculate positions from widths
 positions <- function(width) {
   0.5 * (cumsum(width) + cumsum(c(0, width[-length(width)])))
