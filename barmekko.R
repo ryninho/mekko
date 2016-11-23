@@ -1,42 +1,35 @@
-library(ggplot2)
-library(dplyr)
-library(grid)
-
-library(tibble)
-df <- state.x77 %>% data.frame %>% 
-  rownames_to_column("State") %>% select(State, Population, Illiteracy) %>%
-  head(5) %>% 
-  mutate(Illiteracy = ifelse(State == "Alabama", -Illiteracy, Illiteracy)) %>%
-  mutate(Region = ifelse(State %in% c("Alabama", "Arkansas"), "South", "West"))
-
-
-
-
+#' Calculate positions from widths
 positions <- function(width) {
   0.5 * (cumsum(width) + cumsum(c(0, width[-length(width)])))
 }
 
+#' Create a bar mekko
+#' 
+#' A smarter bar graph.
+#' 
+#' @param df A data frame.
+#' @param x A categorical variable defining the width categories.
+#' @param y A numeric value defining the bar height.
+#' @param width A numeric value defining the bar widths
+#' @return A bar mekko constructed with ggplot2.
+#' @examples 
+#' df <- data.frame(
+#'   product = c("Northeast", "Southeast", "Central", "West"),
+#'   sales = c(1200, 800, 450, 900),
+#'   avg_margin = c(3.2, -1.4, 0.1, 2.1)
+#'   )
+#' barmekko(df, product, avg_margin, sales)
+#' barmekko(df, product, avg_margin, sales) + labs(title = "Margins by Region")
 barmekko <- function(df, x, y, width) {
-  # TODO: add smart sorting (width or y or data source order)
   xlabel <- substitute(x)
   ylabel <- substitute(y)
   x <- eval(substitute(x), df)
   y <- eval(substitute(y), df)
   width <- eval(substitute(width), df)
   pos <- positions(width)
-  ggplot() +
+  p <- ggplot() +
     geom_bar(aes(x = pos, width = width, y = y, fill = x), stat = "identity") +
     scale_x_continuous(labels = x, breaks = pos) +
     xlab(xlabel) + ylab(ylabel) + guides(fill=guide_legend(title=xlabel))
+  suppressWarnings(p)
 }
-
-
-bmx <- barmekko(df, x = State, y = Illiteracy, width = Population)
-bmx
-bmx + guides(fill=guide_legend(title=NULL))
-bmx + labs(title = "New plot title!")
-
-# does NOT work with ggplotly- width is the only thing missing, though it
-# has the negative --> positive bug seen before in plotly for geom_bar
-# (so probably couldn't use it even if that's fixed)
-# ggplotly()
