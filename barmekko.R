@@ -1,13 +1,13 @@
-library(ggplot2) # TODO: is this the right place for this?
+library(ggplot2) # TODO: is this the right place for this (pre-packaging)?
 
 #' Calculate positions from widths
 positions <- function(width) {
   0.5 * (cumsum(width) + cumsum(c(0, width[-length(width)])))
 }
 
-#' Create a bar mekko
+#' Create a bar mekko plot
 #' 
-#' A smarter bar graph.
+#' A smarter bar chart.
 #' 
 #' @param df A data frame.
 #' @param x A categorical variable defining the width categories.
