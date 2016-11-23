@@ -16,12 +16,12 @@ positions <- function(width) {
 #' @return A bar mekko constructed with ggplot2.
 #' @examples 
 #' df <- data.frame(
-#'   product = c("Northeast", "Southeast", "Central", "West"),
+#'   region = c("Northeast", "Southeast", "Central", "West"),
 #'   sales = c(1200, 800, 450, 900),
 #'   avg_margin = c(3.2, -1.4, 0.1, 2.1)
 #'   )
-#' barmekko(df, product, avg_margin, sales)
-#' barmekko(df, product, avg_margin, sales) + labs(title = "Margins by Region")
+#' barmekko(df, region, avg_margin, sales)
+#' barmekko(df, region, avg_margin, sales) + labs(title = "Margins by Region")
 barmekko <- function(df, x, y, width) {
   xlabel <- substitute(x)
   ylabel <- substitute(y)
