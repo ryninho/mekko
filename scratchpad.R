@@ -8,16 +8,21 @@ ggplot(hec, aes(x = Eye, y = Freq, fill = Hair)) +
   geom_bar(stat = "identity", position = "fill")
 
 # ... can use width, but...
-ggplot(hec, aes(x = Eye, y = Freq, fill = Hair, width = c(.1, .1, .1, .1, .6, .6, .6, .6, 1, 1, 1, 1, .5, .5, .5, .5))) + 
+ggplot(hec, aes(x = Eye, y = Freq, fill = Hair, 
+  width = c(.1, .1, .1, .1, .6, .6, .6, .6, 1, 1, 1, 1, .5, .5, .5, .5))) + 
   geom_bar(stat = "identity", position = "fill")
 
 # ... only with a few categories and nothing too large!
-ggplot(hec, aes(x = Eye, y = Freq, fill = Hair, width = c(.1, .1, .1, .1, 6, 6, 6, 6, 1, 1, 1, 1, .5, .5, .5, .5))) + 
+ggplot(hec, aes(x = Eye, y = Freq, fill = Hair, 
+  width = c(.1, .1, .1, .1, 6, 6, 6, 6, 1, 1, 1, 1, .5, .5, .5, .5))) + 
   geom_bar(stat = "identity", position = "fill")
 
 # ... and fails if trying to place the labels since axis is discrete
-ggplot(hec, aes(x = Eye, y = Freq, fill = Hair, width = c(.1, .1, .1, .1, 6, 6, 6, 6, 1, 1, 1, 1, .5, .5, .5, .5))) + 
-  geom_bar(stat = "identity", position = "fill") + scale_x_continuous(breaks = c(.1, 6.1, 7.1, 7.6), labels = c("Brown", "Blue", "Hazel", "Green"))
+ggplot(hec, aes(x = Eye, y = Freq, fill = Hair, 
+  width = c(.1, .1, .1, .1, 6, 6, 6, 6, 1, 1, 1, 1, .5, .5, .5, .5))) + 
+  geom_bar(stat = "identity", position = "fill") + 
+  scale_x_continuous(breaks = c(.1, 6.1, 7.1, 7.6), 
+                     labels = c("Brown", "Blue", "Hazel", "Green"))
 
 
 
