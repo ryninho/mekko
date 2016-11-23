@@ -48,5 +48,5 @@ marimekko <- function(df, x, y, width) {
   labels <- unique(df$x)
   p <- p + scale_x_continuous(breaks = breaks, labels = labels)
   
-  p + xlab(xlabel) + ylab(ylabel) + guides(fill=guide_legend(title=xlabel)) 
+  p + xlab(xlabel) + ylab(ylabel) + guides(fill=guide_legend(title=ylabel)) 
 }
