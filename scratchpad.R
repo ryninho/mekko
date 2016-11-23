@@ -26,6 +26,9 @@ ggplot(hec, aes(x = Eye, y = Freq, fill = Hair, width = c(.1, .1, .1, .1, 6, 6, 
 
 df <- hec %>% rename(x = Eye, y = Hair, width = Freq)
 
+xlabel <- substitute(x)
+ylabel <- substitute(y)
+
 x_widths <- df %>% group_by(x) %>% 
   summarize(x_width = sum(width)) %>% 
   mutate(
@@ -36,31 +39,66 @@ x_widths <- df %>% group_by(x) %>%
 
 df <- df %>% inner_join(x_widths, by = "x")
 
-df1 <- df %>% group_by(x) %>% 
+df <- df %>% group_by(x) %>% 
   do(mutate(., 
     ymin = c(0, head(cumsum(width), length(width) - 1)),
-    ymax = cumsum(width))) %>%
+    ymax = cumsum(width),
+    ymin = ymin / max(ymax),
+    ymax = ymax / max(ymax))) %>%
   ungroup
-arrange(df1, x, y)
+arrange(df, x, y)
 
-p = ggplot(df1, aes(xmin=wmin, xmax=wmax, ymin=ymin, ymax=ymax, fill = y))
+p <- ggplot(df, aes(xmin=wmin, xmax=wmax, ymin=ymin, ymax=ymax, fill = y))
 
-p = p + geom_rect()
-p
-# replacing x axis numbers with words
-breaks = unique(df1$wcenter)
-labels = unique(df1$y)
-p = p + scale_x_continuous(breaks = breaks, labels = labels)
+p <- p + geom_rect()
 
-p
+breaks <- unique(df$wcenter)
+labels <- unique(df$y)
+p <- p + scale_x_continuous(breaks = breaks, labels = labels)
+
+p + xlab(xlabel) + ylab(ylabel) + guides(fill=guide_legend(title=xlabel))
 
 
 # function definition -----------------------------------------------------
 
-
+marimekko <- function(df, x, y, width) {
+  xlabel <- substitute(x)
+  ylabel <- substitute(y)
+  df$x <- eval(substitute(x), df)
+  df$y <- eval(substitute(y), df)
+  df$width <- eval(substitute(width), df)
+  
+  x_widths <- df %>% group_by(x) %>% 
+    summarize(x_width = sum(width)) %>% 
+    mutate(
+      wmin = c(0, head(cumsum(x_width), length(x_width) - 1)),
+      wmax = cumsum(x_width),
+      wcenter = (wmin + wmax) / 2
+    )
+  
+  df <- df %>% inner_join(x_widths, by = "x")
+  
+  df <- df %>% group_by(x) %>% 
+    do(mutate(., 
+              ymin = c(0, head(cumsum(width), length(width) - 1)),
+              ymax = cumsum(width),
+              ymin = ymin / max(ymax),
+              ymax = ymax / max(ymax))) %>%
+    ungroup
+  arrange(df, x, y)
+  
+  p <- ggplot(df, aes(xmin=wmin, xmax=wmax, ymin=ymin, ymax=ymax, fill = y))
+  
+  p <- p + geom_rect()
+  
+  breaks <- unique(df$wcenter)
+  labels <- unique(df$y)
+  p <- p + scale_x_continuous(breaks = breaks, labels = labels)
+  
+  p + xlab(xlabel) + ylab(ylabel) + guides(fill=guide_legend(title=xlabel)) 
+}
 
 
 # actual function call ----------------------------------------------------
 
-# marimekko(hec, Hair, Eye, Freq)
 marimekko(hec, Eye, Hair, Freq)
