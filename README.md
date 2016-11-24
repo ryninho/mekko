@@ -3,6 +3,7 @@ Marimekko and bar mekko graphics in R
 
 #### TODO
 * replace do() with something from purrr()
+* suppress warning re: stacking in barmekko
 * use x___ instead of x to avoid conflict
 * confirming formatting can change
 * need arrange()?
