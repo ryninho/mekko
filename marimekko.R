@@ -38,8 +38,7 @@ marimekko <- function(df, x, y, width) {
       ymin = ymin / max(ymax),
       ymax = ymax / max(ymax))) %>%
     ungroup
-  arrange(df, x, y)
-  
+
   p <- ggplot(df, aes(xmin=wmin, xmax=wmax, ymin=ymin, ymax=ymax, fill = y))
   
   p <- p + geom_rect()
