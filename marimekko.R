@@ -13,6 +13,9 @@ library(dplyr)
 #' @examples 
 #' hec <- HairEyeColor %>% data.frame %>% filter(Sex == "Male") %>% select(-Sex)
 #' marimekko(hec, Eye, Hair, Freq)
+#' # Note: Compare to productplot::prodplot(
+#' #   hec, Freq ~ Hair + Eye, mosaic("v")
+#' # ) + aes(fill=Hair)
 #' marimekko(hec, Hair, Eye, Freq) + labs(title = "Hair and Eye Color")
 marimekko <- function(df, x, y, width) {
   xlabel <- substitute(x)
