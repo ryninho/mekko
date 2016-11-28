@@ -1,0 +1,109 @@
+---
+title: "mekko package vignette"
+author: "Eric Rynerson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{mekko package vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+### Introduction
+
+This is a quick introduction to the marimekko and bar mekko functions in 
+the mekko package.
+
+Their main value is to add quantitative context to a bar graph, via bar width.
+
+```{r set-opts, echo = FALSE}
+knitr::opts_chunk$set(
+  fig.width = 7,
+  fig.height = 4
+)
+```
+
+```{r load-packages, warning = FALSE, message = FALSE, echo = FALSE}
+library(dplyr)
+library(ggplot2)
+library(mekko)
+library(tidyr)
+```
+
+```{r create-example-data, echo = FALSE}
+profits <- data.frame(
+  product = c('widgets', 'sprockets', 'cogs', 'whosits', 'whatsits'),
+  profit_margin = c(3.2, -1.4, 0.1, -5.5, 11.9),
+  revenue = c(850, 1600, 900, 675, 250)
+  )
+
+market <- data.frame(
+  company = c('Acme', 'Spacely', 'Cogswell', 'Vandelay'),
+  global = c(100, 1950, 1800, 925),
+  domestic = c(1100, 475, 250, 75),
+  intergalactic = c(0, 350, 225, 0)
+  ) %>% gather(region, sales, -company)
+```
+
+### Bar mekko
+
+Let's take a look at profit margin by product using ggplot2.
+
+```{r current-state-bad-example-bar-mekko}
+ggplot(profits, aes(x = product, y = profit_margin)) + 
+  geom_bar(stat = "identity")
+```
+
+Well that's insightful, but I don't know how worried I should be about the
+margin on whosits or cogs, nor do I know how happy I should be about whatsits
+knocking it out of the park. Maybe I can add revenue as the bar width so I know
+what's important here?
+
+```{r ggplot-bar-width}
+ggplot(profits, aes(x = product, y = profit_margin, width = revenue)) + 
+  geom_bar(stat = "identity") + 
+  labs(title = "Variable bar width fail :(")
+```
+
+Well shucks, that looks like some kind of Atari game airplane. Let's use the 
+mekko package to put our margins in context.
+
+```{r bar-mekko-example-instacart}
+bmx <- barmekko(profits, product, profit_margin, revenue)
+bmx
+```
+
+Alright, so actually the weak margins on sprockets are worth as much focus as
+the problem with whosits. Also, no high-fives for margins on the whatsits until
+we triple sales of them.
+
+Those labels are a little close together- this is a ggplot object so let's use
+the usual method of rotating the axes.
+
+```{r bar-mekko-extension}
+bmx + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+### Marimekko
+
+The marimekko similarly provides context via bar width, but this time with a 
+100% stacked bar.
+
+```{r current-state-bad-example-marimekko}
+ggplot(market, aes(x = company, y = sales, fill = region)) + geom_bar(stat = "identity", position = "fill")
+```
+
+Looks like Acme is heavily concentrated in the domestic market and Cogswell and
+Spacely are dabbling in intergalactic commerce. Is the latter a market I should
+be thinking about?
+
+```{r marimekko-example}
+marimekko(market, company, region, sales)
+```
+
+Now I can see that the intergalactic market is actually pretty substantial- 
+outside of Acme, which I can see by eyeballing the chart above has about half
+of the domestic market making it far and away the domestic leader, the 
+intergalactic is almost as big as the non-Acme domestic market. If Acme's 
+domestic dominance is impenetrable it might make more sense to focus on 
+intergalactic expansion as well as of course the largest market which is global.
