@@ -14,6 +14,7 @@ positions <- function(width) {
 #' @return A bar mekko constructed with ggplot2.
 #' @export
 #' @examples
+#' library(ggplot2)
 #' df <- data.frame(
 #'   region = c('Northeast', 'Southeast', 'Central', 'West'),
 #'   sales = c(1200, 800, 450, 900),
