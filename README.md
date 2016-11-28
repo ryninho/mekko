@@ -1,6 +1,10 @@
 # mekko
 Marimekko and bar mekko graphics in R
 
+Install with:  
+
+    devtools::install_github('ryninho/mekko')
+
 #### TODO
 * replace do() with something from purrr()
 * suppress warning re: stacking in barmekko
