@@ -3,7 +3,7 @@ Marimekko and bar mekko graphics in R
 
 Install with:  
 
-    devtools::install_github('ryninho/mekko')
+    devtools::install_github('ryninho/mekko', build_vignettes = TRUE)
 
 #### TODO
 * add smart sorting (width or y or data source order- never alpha)
