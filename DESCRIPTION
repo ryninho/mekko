@@ -14,6 +14,8 @@ Description: Create variable width bar and 100% stacked bar charts i.e.
 Imports:
     dplyr (>= 0.4.3),
     ggplot2 (>= 2.0.0)
+Suggests:
+    tidyr(>= 0.4.1)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
