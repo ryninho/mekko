@@ -11,11 +11,12 @@
 #' @importFrom dplyr ungroup
 #' @export
 #' @examples
+#' library(ggplot2)
 #' hec <- dplyr::filter(data.frame(HairEyeColor), Sex == "Male")
 #' marimekko(hec, Eye, Hair, Freq)
 #' # Note: Compare to productplots::prodplot(
 #' #   hec, Freq ~ Hair + Eye, mosaic("v")
-#' # ) + ggplot2::aes(fill=Hair)
+#' # ) + aes(fill=Hair)
 #' marimekko(hec, Hair, Eye, Freq) + labs(title = "Hair and Eye Color")
 marimekko <- function(df, x, y, width) {
   xlabel <- substitute(x)
