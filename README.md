@@ -5,6 +5,10 @@ Install with:
 
     devtools::install_github('ryninho/mekko', build_vignettes = TRUE)
 
+View examples with:
+
+    vignette("mekko-vignette")
+
 #### TODO
 * add smart sorting (width or y or data source order- never alpha)
 
