@@ -2,10 +2,10 @@
 #'
 #' A smarter stacked bar chart.
 #'
-#' @param df A data frame.
+#' @param data A data frame.
 #' @param x A categorical variable defining the width categories.
 #' @param y A categorical variable defining the (vertical) segment categories.
-#' @param width A numeric value to be summed across both categories.
+#' @param width A numeric variable to be summed across both categories.
 #' @return A Marimekko constructed with ggplot2.
 #' @importFrom dplyr %>%
 #' @importFrom dplyr ungroup
@@ -18,7 +18,8 @@
 #' #   hec, Freq ~ Hair + Eye, mosaic("v")
 #' # ) + aes(fill=Hair)
 #' marimekko(hec, Hair, Eye, Freq) + labs(title = "Hair and Eye Color")
-marimekko <- function(df, x, y, width) {
+marimekko <- function(data, x, y, width) {
+  df <- data
   xlabel <- substitute(x)
   ylabel <- substitute(y)
   df$x <- eval(substitute(x), df)

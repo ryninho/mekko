@@ -7,10 +7,10 @@ positions <- function(width) {
 #'
 #' A smarter bar chart.
 #'
-#' @param df A data frame.
+#' @param data A data frame.
 #' @param x A categorical variable defining the width categories.
-#' @param y A numeric value defining the bar height.
-#' @param width A numeric value defining the bar widths
+#' @param y A numeric variable defining the bar height.
+#' @param width A numeric variable defining the bar widths
 #' @return A bar mekko constructed with ggplot2.
 #' @export
 #' @examples
@@ -22,7 +22,8 @@ positions <- function(width) {
 #'   )
 #' barmekko(df, region, avg_margin, sales)
 #' barmekko(df, region, avg_margin, sales) + labs(title = 'Margins by Region')
-barmekko <- function(df, x, y, width) {
+barmekko <- function(data, x, y, width) {
+  df <- data
   xlabel <- substitute(x)
   ylabel <- substitute(y)
   x <- eval(substitute(x), df)
