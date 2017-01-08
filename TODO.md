@@ -1,4 +1,4 @@
-#### TODO
+# TODO
 * add smart sorting (width or y or data source order- never alpha)
 * replace do() with something from purrr()
 * suppress warning re: stacking in barmekko
@@ -9,3 +9,7 @@
 * update vignette with new options above
 * vignette should be the readme
 * list package on CRAN
+
+#### Coming back to this project
+* Can update README by running the vignette rmarkdown file with output github_document
+and then copying that as the README
