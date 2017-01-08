@@ -1,14 +1,16 @@
 ---
 title: "Introduction to the mekko package"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    keep_md: true
 vignette: >
-  %\VignetteIndexEntry{mekko package vignette}
+  %\VignetteIndexEntry{Introduction to the mekko package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 ### Marimekko and bar mekko graphics in R
-
+TEST was  
 This is a quick introduction to the marimekko and bar mekko functions in 
 the mekko package.
 
