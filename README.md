@@ -1,7 +1,7 @@
 # Introduction to the mekko package
 `r Sys.Date()`  
 ### Marimekko and bar mekko graphics in R
-TEST was  
+
 This is a quick introduction to the marimekko and bar mekko functions in 
 the mekko package.
 
