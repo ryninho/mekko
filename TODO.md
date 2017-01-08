@@ -1,4 +1,5 @@
 # TODO
+* replace geom_bar with geom_rect so that it works in plotly
 * add smart sorting (width or y or data source order- never alpha)
 * replace do() with something from purrr()
 * suppress warning re: stacking in barmekko
