@@ -1,6 +1,5 @@
 ---
-title: "mekko package vignette"
-author: "Eric Rynerson"
+title: "Introduction to the mekko package"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -8,8 +7,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-### Introduction
+### Marimekko and bar mekko graphics in R
 
 This is a quick introduction to the marimekko and bar mekko functions in 
 the mekko package.
@@ -22,6 +20,17 @@ knitr::opts_chunk$set(
   fig.height = 4
 )
 ```
+
+Install with:
+```{r, eval=FALSE}
+devtools::install_github('ryninho/mekko', build_vignettes = TRUE)
+```
+
+View examples with:
+```{r, eval=FALSE}
+vignette("mekko-vignette")
+```
+
 
 ```{r load-packages, warning = FALSE, message = FALSE, echo = FALSE}
 library(dplyr)

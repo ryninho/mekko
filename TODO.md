@@ -2,9 +2,10 @@
 * add smart sorting (width or y or data source order- never alpha)
 * replace do() with something from purrr()
 * suppress warning re: stacking in barmekko
-* use x___ instead of x to avoid conflict
-* confirm formatting can change
+# add smart color options e.g. red-green neg-pos (or color can be an additional variable?)
+# add highlight option e.g. highlight a specific x value or highlight by mininimum or maximum width or y value
 * separate data preparation from rendering to improve testability
 * try on wider array of examples
-* add updated vignette
+* update vignette with new options above
+* vignette should be the readme
 * list package on CRAN
