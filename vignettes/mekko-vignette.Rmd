@@ -22,12 +22,12 @@ knitr::opts_chunk$set(
 ```
 
 Install with:
-```{r, eval=FALSE}
+```{r install-mekko-package, eval=FALSE}
 devtools::install_github('ryninho/mekko', build_vignettes = TRUE)
 ```
 
 View examples with:
-```{r, eval=FALSE}
+```{r open-vignette, eval=FALSE}
 vignette("mekko-vignette")
 ```
 
@@ -68,7 +68,7 @@ margin on whosits or cogs, nor do I know how happy I should be about whatsits
 knocking it out of the park. Maybe I can add revenue as the bar width so I know
 what's important here?
 
-```{r ggplot-bar-width}
+```{r ggplot-bar-width-fail}
 ggplot(profits, aes(x = product, y = profit_margin, width = revenue)) + 
   geom_bar(stat = "identity") + 
   labs(title = "Variable bar width fail :(")
@@ -77,7 +77,7 @@ ggplot(profits, aes(x = product, y = profit_margin, width = revenue)) +
 Well shucks, that looks like some kind of Atari game airplane. Let's use the 
 mekko package to put our margins in context.
 
-```{r bar-mekko-example-instacart}
+```{r bar-mekko-example}
 bmx <- barmekko(profits, product, profit_margin, revenue)
 bmx
 ```
