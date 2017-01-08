@@ -1,5 +1,5 @@
 # Introduction to the mekko package
-`r Sys.Date()`  
+
 ### Marimekko and bar mekko graphics in R
 
 This is a quick introduction to the marimekko and bar mekko functions in 
@@ -8,7 +8,7 @@ the mekko package.
 Their main value is to add quantitative context to a bar graph, via bar width.
 
 
-
+<br>
 Install with:
 
 ```r
@@ -36,7 +36,7 @@ ggplot(profits, aes(x = product, y = profit_margin)) +
   geom_bar(stat = "identity")
 ```
 
-![](mekko-vignette_files/figure-html/current-state-bad-example-bar-mekko-1.png)<!-- -->
+![](vignettes/mekko-vignette_files/figure-html/current-state-bad-example-bar-mekko-1.png)<!-- -->
 
 Well that's insightful, but I don't know how worried I should be about the
 margin on whosits or cogs, nor do I know how happy I should be about whatsits
@@ -56,7 +56,7 @@ ggplot(profits, aes(x = product, y = profit_margin, width = revenue)) +
 ## Warning: position_stack requires non-overlapping x intervals
 ```
 
-![](mekko-vignette_files/figure-html/ggplot-bar-width-fail-1.png)<!-- -->
+![](vignettes/mekko-vignette_files/figure-html/ggplot-bar-width-fail-1.png)<!-- -->
 
 Well shucks, that looks like some kind of Atari game airplane. Let's use the 
 mekko package to put our margins in context.
@@ -67,7 +67,7 @@ bmx <- barmekko(profits, product, profit_margin, revenue)
 bmx
 ```
 
-![](mekko-vignette_files/figure-html/bar-mekko-example-1.png)<!-- -->
+![](vignettes/mekko-vignette_files/figure-html/bar-mekko-example-1.png)<!-- -->
 
 Alright, so actually the weak margins on sprockets are worth as much focus as
 the problem with whosits. Also, no high-fives for margins on the whatsits until
@@ -81,7 +81,7 @@ the usual method of rotating the axes.
 bmx + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
-![](mekko-vignette_files/figure-html/bar-mekko-extension-1.png)<!-- -->
+![](vignettes/mekko-vignette_files/figure-html/bar-mekko-extension-1.png)<!-- -->
 
 ### Marimekko
 
@@ -93,7 +93,7 @@ The marimekko similarly provides context via bar width, but this time with a
 ggplot(market, aes(x = company, y = sales, fill = region)) + geom_bar(stat = "identity", position = "fill")
 ```
 
-![](mekko-vignette_files/figure-html/current-state-bad-example-marimekko-1.png)<!-- -->
+![](vignettes/mekko-vignette_files/figure-html/current-state-bad-example-marimekko-1.png)<!-- -->
 
 Looks like Acme is heavily concentrated in the domestic market and Cogswell and
 Spacely are dabbling in intergalactic commerce. Is the latter a market I should
@@ -104,7 +104,7 @@ be thinking about?
 marimekko(market, company, region, sales)
 ```
 
-![](mekko-vignette_files/figure-html/marimekko-example-1.png)<!-- -->
+![](vignettes/mekko-vignette_files/figure-html/marimekko-example-1.png)<!-- -->
 
 Now I can see that the intergalactic market is actually pretty substantial- 
 outside of Acme, which I can see by eyeballing the chart above has about half

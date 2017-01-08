@@ -1,5 +1,5 @@
 # Introduction to the mekko package
-`r Sys.Date()`  
+
 ### Marimekko and bar mekko graphics in R
 
 This is a quick introduction to the marimekko and bar mekko functions in 
@@ -8,7 +8,7 @@ the mekko package.
 Their main value is to add quantitative context to a bar graph, via bar width.
 
 
-
+<br>
 Install with:
 
 ```r

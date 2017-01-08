@@ -7,7 +7,8 @@
 * separate data preparation from rendering to improve testability
 * try on wider array of examples
 * update vignette with new options above
-* vignette should be the readme
+# why doesn't this line work with the .md file created by keep_md option (shows text, doesn't run code):
+    date: "`r Sys.Date()`"
 * list package on CRAN
 
 #### Coming back to this project
