@@ -23,5 +23,7 @@ Ideas
 * replace do() with something from purrr()
 
 #### Coming back to this project
+* open one of the R/*.R files and make edits to functions; test by running the vignette .Rmd file
+* can use devtools::load_all() to re-load the package after changes
 * Can update README by running the vignette rmarkdown file with output github_document
-and then copying that as the README. Need to update references to the .png files.
+and then copying that as the README. Need to update references to the .png files
