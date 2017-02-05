@@ -38,3 +38,13 @@ barmekko <- function(data, x, y, width) {
     ggplot2::ylab(ylabel) +
     ggplot2::guides(fill = ggplot2::guide_legend(title = xlabel)))
 }
+
+library(ggplot2)
+df <- data.frame(
+ region = c('Northeast', 'Southeast', 'Central', 'West'),
+ sales = c(1200, 800, 450, 900),
+ avg_margin = c(3.2, -1.4, 0.1, 2.1),
+ stringsAsFactors = FALSE # needed only for ggplotly conversion
+ )
+barmekko(df, region, avg_margin, sales)
+barmekko(df, region, avg_margin, sales) + labs(title = 'Margins by Region')
