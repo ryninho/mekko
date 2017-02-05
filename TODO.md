@@ -6,6 +6,7 @@ Bugs
     date: "`r Sys.Date()`"
 
 Immediate
+* ggplotly() should be able to handle factors for the x-axis (barmekko does this but fails at ggplotly if factor)
 * add labels and set default (have/don't?)
 * add smart sorting (width or y or data source order- never alpha)
 
