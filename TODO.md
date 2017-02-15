@@ -7,7 +7,7 @@ Bugs
 
 Immediate
 * add labels and set default (have/don't?)
-* add smart sorting (width or y or data source order- never alpha)
+* add sorting examples to the demo and documentation
 
 Soon
 # add smart color options e.g. red-green neg-pos (or color can be an additional variable)
@@ -21,6 +21,7 @@ https://cpsievert.github.io/plotly_book/extending-ggplotly.html)
 
 Ideas
 * replace do() with something from purrr()
+* add smart sorting (width or y or data source order- never alpha) (is desc by width really most common??)
 
 #### Coming back to this project
 * Can update README by running the vignette rmarkdown file with output github_document

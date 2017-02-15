@@ -22,6 +22,9 @@ positions <- function(width) {
 #'   )
 #' barmekko(df, region, avg_margin, sales)
 #' barmekko(df, region, avg_margin, sales) + labs(title = 'Margins by Region')
+#' library(dplyr)
+#' barmekko(df %>% arrange(-sales), region, avg_margin, sales)
+#' barmekko(df %>% arrange(-avg_margin), region, avg_margin, sales)
 barmekko <- function(data, x, y, width) {
   df <- data
   xlabel <- substitute(x)
