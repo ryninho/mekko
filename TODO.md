@@ -8,6 +8,7 @@ Bugs
 Immediate
 * add value label examples to demo and documentation
 * add sorting examples to the demo and documentation
+* improve label placement when all values are negative
 
 Soon
 # add smart color options e.g. red-green neg-pos (or color can be an additional variable)
