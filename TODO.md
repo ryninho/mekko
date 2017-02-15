@@ -6,7 +6,7 @@ Bugs
     date: "`r Sys.Date()`"
 
 Immediate
-* add labels and set default (have/don't?)
+* add value label examples to demo and documentation
 * add sorting examples to the demo and documentation
 
 Soon
