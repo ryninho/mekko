@@ -11,6 +11,7 @@ positions <- function(width) {
 #' @param x A categorical variable defining the width categories.
 #' @param y A numeric variable defining the bar height.
 #' @param width A numeric variable defining the bar widths
+#' @param values A boolean indicating whether to show value labels in bars
 #' @return A bar mekko constructed with ggplot2.
 #' @export
 #' @examples
@@ -25,7 +26,7 @@ positions <- function(width) {
 #' library(dplyr)
 #' barmekko(df %>% arrange(-sales), region, avg_margin, sales)
 #' barmekko(df %>% arrange(-avg_margin), region, avg_margin, sales)
-barmekko <- function(data, x, y, width) {
+barmekko <- function(data, x, y, width, values = FALSE) {
   df <- data
   xlabel <- substitute(x)
   ylabel <- substitute(y)
@@ -33,11 +34,18 @@ barmekko <- function(data, x, y, width) {
   y <- eval(substitute(y), df)
   width <- eval(substitute(width), df)
   pos <- positions(width)
-  suppressWarnings(ggplot2::ggplot() +
+  p <- suppressWarnings(
+    ggplot2::ggplot() +
     ggplot2::geom_bar(ggplot2::aes(x = pos, width = width, y = y, fill = x),
       stat = "identity") +
     ggplot2::scale_x_continuous(labels = x, breaks = pos) +
     ggplot2::xlab(xlabel) +
     ggplot2::ylab(ylabel) +
-    ggplot2::guides(fill = ggplot2::guide_legend(title = xlabel)))
+    ggplot2::guides(fill = ggplot2::guide_legend(title = xlabel))
+  )
+  if(values) {
+    p + ggplot2::geom_text(aes(x = pos, y = 0, label = y, vjust = -0.5))
+  } else {
+    p
+  }
 }
