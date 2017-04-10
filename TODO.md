@@ -1,11 +1,14 @@
 # TODO
 
 Bugs
+* arrange() doesn't lead to properly sorted marimekko (ignores sort)
 * suppress warning re: stacking in barmekko (or just replace geom_bar)
 # why doesn't this line work with the .md file created by keep_md option (shows text, doesn't run code):
     date: "`r Sys.Date()`"
 
 Immediate
+* add border lines to marimekko as default (hard to see differences in columns with same color right now)
+* if you leave in a grouping variable it groups the chart by it (see cancelation analysis rmd and group by time zone name and time zone)... geom_bar doesn't do this; should I keep this or remove it?
 * add value label examples to demo and documentation
 * add sorting examples to the demo and documentation
 * improve label placement when all values are negative
