@@ -10,7 +10,8 @@ Immediate
 * add border lines to marimekko as default (hard to see differences in columns with same color right now)
 * if you leave in a grouping variable it groups the chart by it (see cancelation analysis rmd and group by time zone name and time zone)... geom_bar doesn't do this; should I keep this or remove it?
 * add value label examples to demo and documentation
-* add sorting examples to the demo and documentation
+* add arrange/sorting examples to the demo and documentation
+* add label rotation examples to demo and documentation
 * improve label placement when all values are negative
 * allow user to set text y, vjust including using a variable (or should it default to y rather than 0?)
 
