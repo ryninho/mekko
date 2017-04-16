@@ -1,9 +1,9 @@
 Package: mekko
 Type: Package
 Title: Variable Width Charts: Marimekko and Bar Mekko
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: as.person(c(
-    "Eric Rynerson <eric.rynerson@gmail.com> [aut, cre]", 
+    "Eric Rynerson <eric.rynerson@gmail.com> [aut, cre]",
     "Adam Evans <theadamevans@gmail.com> [ctb]"
   ))
 Maintainer: Eric Rynerson <eric.rynerson@gmail.com>
