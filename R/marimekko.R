@@ -49,7 +49,7 @@ marimekko <- function(data, x, y, width) {
          )
     )
 
-  p <- p + ggplot2::geom_rect()
+  p <- p + ggplot2::geom_rect(color = "gray33")
 
   breaks <- unique(df$wcenter)
   labels <- unique(df$x)
