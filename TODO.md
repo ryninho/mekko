@@ -24,6 +24,7 @@ https://cpsievert.github.io/plotly_book/extending-ggplotly.html)
 * update vignette with new options above once completed
 * write tests and include wider array of examples
 * get package listed on CRAN
+* allow option to display raw values, categories or percentages of total
 
 Ideas
 * replace do() with something from purrr()
