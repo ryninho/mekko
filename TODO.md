@@ -18,6 +18,7 @@ Immediate
 Soon
 # add smart color options e.g. red-green neg-pos (or color can be an additional variable)
 # add highlight option e.g. highlight a specific x value or highlight by mininimum or maximum width or y value
+* allow multiple columns for X (concatenate) or at least just include a good example in the docs
 * replace geom_bar with geom_rect so that it works in plotly (include rangeslider example from
 https://cpsievert.github.io/plotly_book/extending-ggplotly.html)
 * separate data preparation from rendering to improve testability
