@@ -30,7 +30,7 @@ barmekko <- function(data, x, y, width, values = FALSE) {
   df <- data
   xlabel <- substitute(x)
   ylabel <- substitute(y)
-  x <- eval(substitute(x), df)
+  x <- eval(substitute(x), df) %>% as.character
   y <- eval(substitute(y), df)
   width <- eval(substitute(width), df)
   pos <- positions(width)
