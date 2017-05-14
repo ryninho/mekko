@@ -22,7 +22,7 @@ marimekko <- function(data, x, y, width) {
   df <- data
   xlabel <- substitute(x)
   ylabel <- substitute(y)
-  df$x <- eval(substitute(x), df)
+  df$x <- eval(substitute(x), df) %>% as.character
   df$y <- eval(substitute(y), df)
   df$width <- eval(substitute(width), df)
 
@@ -52,7 +52,7 @@ marimekko <- function(data, x, y, width) {
   p <- p + ggplot2::geom_rect(color = "gray33")
 
   breaks <- unique(df$wcenter)
-  labels <- unique(df$x)
+  labels <- unique(df$x) %>% as.character
   p <- p + ggplot2::scale_x_continuous(breaks = breaks, labels = labels)
 
   p + ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel) +
