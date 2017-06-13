@@ -16,7 +16,10 @@ Immediate
 * allow user to set text y, vjust including using a variable (or should it default to y rather than 0?)
 
 Soon
-* hack plotly so that it shows the options I want it to show (or use it as basis for new version of mekko?? or just add mekko to plotly??)
+* add Simpson's Paradox example from here: http://quillette.com/2017/05/26/paradoxes-probability-statistical-strangeness/
+* hack plotly so that it shows the options I want it to show
+-- see https://cpsievert.github.io/plotly_book/extending-ggplotly.html for:
+"Figure 1.9: Using the style() function to modify hoverinfo attribute values of a plotly object created via ggplotly() (by default, ggplotly() displays hoverinfo for all traces). In this case, the hoverinfo for a fitted line and error bounds are hidden."
 * add smart color options e.g. red-green neg-pos (or color can be an additional variable)
 * add highlight option e.g. highlight a specific x value or highlight by mininimum or maximum width or y value
 * allow multiple columns for X (concatenate) or at least just include a good example in the docs
