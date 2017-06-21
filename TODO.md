@@ -3,7 +3,7 @@
 Bugs
 * arrange() doesn't lead to properly sorted marimekko (ignores sort)
 * suppress warning re: stacking in barmekko (or just replace geom_bar)
-# why doesn't this line work with the .md file created by keep_md option (shows text, doesn't run code):
+* why doesn't this line work with the .md file created by keep_md option (shows text, doesn't run code):
     date: "`r Sys.Date()`"
 
 Immediate
