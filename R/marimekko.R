@@ -20,8 +20,8 @@
 #' marimekko(hec, Hair, Eye, Freq) + labs(title = "Hair and Eye Color")
 marimekko <- function(data, x, y, width) {
   df <- data
-  xlabel <- substitute(x)
-  ylabel <- substitute(y)
+  xlabel <- as.character(substitute(x))
+  ylabel <- as.character(substitute(y))
   df$x <- eval(substitute(x), df) %>% as.character
   df$y <- eval(substitute(y), df)
   df$width <- eval(substitute(width), df)
