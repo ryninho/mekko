@@ -2,3 +2,5 @@
 ^TODO\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+cran-comments.md
+test-vignette.Rmd
