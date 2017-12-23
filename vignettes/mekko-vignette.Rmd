@@ -34,14 +34,14 @@ vignette("mekko-vignette")
 ```
 
 
-```{r load-packages, warning = FALSE, message = FALSE, echo = FALSE}
+```{r load-packages, warning = FALSE, message = FALSE}
 library(dplyr)
 library(ggplot2)
 library(mekko)
 library(tidyr)
 ```
 
-```{r create-example-data, echo = FALSE}
+```{r create-example-data}
 profits <- data.frame(
   product = c('widgets', 'sprockets', 'cogs', 'whosits', 'whatsits'),
   profit_margin = c(3.2, -1.4, 0.1, -5.5, 11.9),
