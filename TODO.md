@@ -5,6 +5,9 @@ Branch idea: Only barmekko
 * Drop marimekko from vignette
 * Write R-package-friendly documentation
 * Do whatever else it takes to submit to CRAN
+** open as .proj and Build --> Check... why does the .Rd file (and mekko-Ex.R) fail to copy over `library(ggplot2)`, causing the check to fail when it can't find the function `labs`?
+*** barmekko(df, region, avg_margin, sales) + labs(title = 'Margins by Region')
+Error: could not find function "labs"
 
 Bugs
 * arrange() doesn't lead to properly sorted marimekko (ignores sort)
