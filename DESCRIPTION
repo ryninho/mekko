@@ -1,16 +1,15 @@
 Package: mekko
 Type: Package
-Title: Variable Width Charts: Marimekko and Bar Mekko
-Version: 0.0.0.9002
+Title: Variable Width Bar Charts: Bar Mekko
+Version: 0.1.0
 Authors@R: as.person(c(
-    "Eric Rynerson <eric.rynerson@gmail.com> [aut, cre]",
-    "Adam Evans <theadamevans@gmail.com> [ctb]"
+    "Eric Rynerson <eric.rynerson@gmail.com> [aut, cre]"
   ))
 Maintainer: Eric Rynerson <eric.rynerson@gmail.com>
-Description: Create variable width bar and 100% stacked bar charts i.e.
-    Marimekko and bar mekko charts to include important quantitative context.
-    Synonymous with or closely related to mosaic, spine (or spinogram), matrix,
-    submarine, olympic and Mondrian plots. Also, an alternative to tree maps.
+Description: Create variable width bar charts i.e.
+    "bar mekko" charts to include important quantitative context.
+    Closely related to mosaic, spine (or spinogram), matrix,
+    submarine, olympic, Mondrian or product plots and tree maps.
 Imports:
     dplyr (>= 0.4.3),
     ggplot2 (>= 2.0.0)

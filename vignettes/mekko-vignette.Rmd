@@ -9,12 +9,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-### Marimekko and bar mekko graphics in R
+### Bar mekko graphics in R
 
-This is a quick introduction to the marimekko and bar mekko functions in 
+This is a quick introduction to the bar mekko function* in 
 the mekko package.
 
-Their main value is to add quantitative context to a bar graph, via bar width.
+Its main value is to add quantitative context to a bar graph, via bar width.
 
 ```{r set-opts, echo = FALSE}
 knitr::opts_chunk$set(
@@ -47,13 +47,6 @@ profits <- data.frame(
   profit_margin = c(3.2, -1.4, 0.1, -5.5, 11.9),
   revenue = c(850, 1600, 900, 675, 250)
   )
-
-market <- data.frame(
-  company = c('Acme', 'Spacely', 'Cogswell', 'Vandelay'),
-  global = c(100, 1950, 1800, 925),
-  domestic = c(1100, 475, 250, 75),
-  intergalactic = c(0, 350, 225, 0)
-  ) %>% gather(region, sales, -company)
 ```
 
 ### Bar mekko
@@ -95,26 +88,6 @@ the usual method of rotating the axes.
 bmx + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
-### Marimekko
+### Appendix
 
-The marimekko similarly provides context via bar width, but this time with a 
-100% stacked bar.
-
-```{r current-state-bad-example-marimekko}
-ggplot(market, aes(x = company, y = sales, fill = region)) + geom_bar(stat = "identity", position = "fill")
-```
-
-Looks like Acme is heavily concentrated in the domestic market and Cogswell and
-Spacely are dabbling in intergalactic commerce. Is the latter a market I should
-be thinking about?
-
-```{r marimekko-example}
-marimekko(market, company, region, sales)
-```
-
-Now I can see that the intergalactic market is actually pretty substantial- 
-outside of Acme, which I can see by eyeballing the chart above has about half
-of the domestic market making it far and away the domestic leader, the 
-intergalactic is almost as big as the non-Acme domestic market. If Acme's 
-domestic dominance is impenetrable it might make more sense to focus on 
-intergalactic expansion as well as of course the largest market which is global.
+* This package originally included a marimekko function as well, but the latter was discovered to be well covered in [other](https://cran.r-project.org/web/packages/ggmosaic/vignettes/ggmosaic.html) [packages](https://www.semanticscholar.org/paper/Product-Plots-Wickham-Hofmann/0598a59354cb96161d68dab91fb0de21fb8671fd/figure/6), so it was removed to simplify maintenance.

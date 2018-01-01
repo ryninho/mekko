@@ -8,6 +8,7 @@ Branch idea: Only barmekko
 ** open as .proj and Build --> Check... why does the .Rd file (and mekko-Ex.R) fail to copy over `library(ggplot2)`, causing the check to fail when it can't find the function `labs`?
 *** barmekko(df, region, avg_margin, sales) + labs(title = 'Margins by Region')
 Error: could not find function "labs"
+* Can I get rid of the dplyr import without marimekko (probably need to change the demo?)
 
 Bugs
 * arrange() doesn't lead to properly sorted marimekko (ignores sort)
