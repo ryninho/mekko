@@ -2,11 +2,17 @@
 % Please edit documentation in R/barmekko.R
 \name{positions}
 \alias{positions}
-\title{Calculate positions from widths}
+\title{Calculate positions from widths.}
 \usage{
 positions(width)
 }
+\arguments{
+\item{width}{A numeric vector of bar widths.}
+}
+\value{
+A numeric vector of bar positions.
+}
 \description{
-Calculate positions from widths
+Calculate positions from widths.
 }
 

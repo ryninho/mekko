@@ -1,4 +1,7 @@
-#' Calculate positions from widths
+#' Calculate positions from widths.
+#' 
+#' @param width A numeric vector of bar widths.
+#' @return A numeric vector of bar positions.
 positions <- function(width) {
   0.5 * (cumsum(width) + cumsum(c(0, width[-length(width)])))
 }
