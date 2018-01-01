@@ -4,16 +4,18 @@
 \alias{barmekko}
 \title{Create a bar mekko plot.}
 \usage{
-barmekko(df, x, y, width)
+barmekko(data, x, y, width, values = FALSE)
 }
 \arguments{
-\item{df}{A data frame.}
+\item{data}{A data frame.}
 
 \item{x}{A categorical variable defining the width categories.}
 
-\item{y}{A numeric value defining the bar height.}
+\item{y}{A numeric variable defining the bar height.}
 
-\item{width}{A numeric value defining the bar widths}
+\item{width}{A numeric variable defining the bar widths}
+
+\item{values}{A boolean indicating whether to show value labels in bars}
 }
 \value{
 A bar mekko constructed with ggplot2.
@@ -22,6 +24,7 @@ A bar mekko constructed with ggplot2.
 A smarter bar chart.
 }
 \examples{
+library(ggplot2)
 df <- data.frame(
   region = c('Northeast', 'Southeast', 'Central', 'West'),
   sales = c(1200, 800, 450, 900),
@@ -29,5 +32,8 @@ df <- data.frame(
   )
 barmekko(df, region, avg_margin, sales)
 barmekko(df, region, avg_margin, sales) + labs(title = 'Margins by Region')
+library(dplyr)
+barmekko(df \%>\% arrange(-sales), region, avg_margin, sales)
+barmekko(df \%>\% arrange(-avg_margin), region, avg_margin, sales)
 }
 

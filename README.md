@@ -37,7 +37,7 @@ profits <- data.frame(
 Let's take a look at profit margin by product using ggplot2.
 
 ``` r
-ggplot(profits, aes(x = product, y = profit_margin)) + 
+ggplot(profits, aes(x = product, y = profit_margin)) +
   geom_bar(stat = "identity")
 ```
 
@@ -46,8 +46,8 @@ ggplot(profits, aes(x = product, y = profit_margin)) +
 Well that's insightful, but I don't know how worried I should be about the margin on whosits or cogs, nor do I know how happy I should be about whatsits knocking it out of the park. Maybe I can add revenue as the bar width so I know what's important here?
 
 ``` r
-ggplot(profits, aes(x = product, y = profit_margin, width = revenue)) + 
-  geom_bar(stat = "identity") + 
+ggplot(profits, aes(x = product, y = profit_margin, width = revenue)) +
+  geom_bar(stat = "identity") +
   labs(title = "Variable bar width fail :(")
 ```
 
