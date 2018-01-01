@@ -20,10 +20,8 @@ vignette("mekko-vignette")
 ```
 
 ``` r
-library(dplyr)
 library(ggplot2)
 library(mekko)
-library(tidyr)
 ```
 
 ``` r
