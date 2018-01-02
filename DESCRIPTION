@@ -2,10 +2,9 @@ Package: mekko
 Type: Package
 Title: Variable Width Bar Charts: Bar Mekko
 Version: 0.1.0
-Authors@R: as.person(c(
-    "Eric Rynerson <eric.rynerson@gmail.com> [aut, cre]",
-    "Julius Vainora [ctb]"
-  ))
+Authors@R: c(
+    person("Eric", "Rynerson", email = "eric.rynerson@gmail.com", role = c("cre", "aut")),
+    person("Julius", "Vainora", role = "ctb"))
 Maintainer: Eric Rynerson <eric.rynerson@gmail.com>
 Description: Create variable width bar charts i.e.
     "bar mekko" charts to include important quantitative context.
