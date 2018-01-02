@@ -5,4 +5,4 @@ First submission.
 * win-builder
 
 ## R CMD check results
-There were no ERRORs or WARNINGs or NOTES.
+There were no ERRORs or WARNINGs.
