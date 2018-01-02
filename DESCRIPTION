@@ -3,7 +3,8 @@ Type: Package
 Title: Variable Width Bar Charts: Bar Mekko
 Version: 0.1.0
 Authors@R: as.person(c(
-    "Eric Rynerson <eric.rynerson@gmail.com> [aut, cre]"
+    "Eric Rynerson <eric.rynerson@gmail.com> [aut, cre]",
+    "Julius Vainora [ctb]"
   ))
 Maintainer: Eric Rynerson <eric.rynerson@gmail.com>
 Description: Create variable width bar charts i.e.
