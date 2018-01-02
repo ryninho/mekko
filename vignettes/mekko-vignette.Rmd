@@ -88,4 +88,4 @@ bmx + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ### Appendix
 
-* This package originally included a marimekko function as well, but the latter was discovered to be well covered in [other](https://cran.r-project.org/web/packages/ggmosaic/vignettes/ggmosaic.html) [packages](https://www.semanticscholar.org/paper/Product-Plots-Wickham-Hofmann/0598a59354cb96161d68dab91fb0de21fb8671fd/figure/6), so it was removed to simplify maintenance.
+* This package originally included a marimekko function as well, but the latter was discovered to be well covered in [other](https://CRAN.R-project.org/package=ggmosaic/vignettes/ggmosaic.html) [packages](https://www.semanticscholar.org/paper/Product-Plots-Wickham-Hofmann/0598a59354cb96161d68dab91fb0de21fb8671fd/figure/6), so it was removed to simplify maintenance.
