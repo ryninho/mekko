@@ -1,5 +1,5 @@
 #' Calculate positions from widths.
-#' 
+#'
 #' @param width A numeric vector of bar widths.
 #' @return A numeric vector of bar positions.
 positions <- function(width) {
@@ -26,9 +26,8 @@ positions <- function(width) {
 #'   )
 #' barmekko(df, region, avg_margin, sales)
 #' barmekko(df, region, avg_margin, sales) + labs(title = 'Margins by Region')
-#' library(dplyr)
-#' barmekko(arrange(df, -sales), region, avg_margin, sales)
-#' barmekko(arrange(df, -avg_margin), region, avg_margin, sales)
+#' barmekko(df[order(-df$sales),], region, avg_margin, sales)
+#' barmekko(df[order(-df$avg_margin),], region, avg_margin, sales)
 barmekko <- function(data, x, y, width, values = FALSE) {
   df <- data
   xlabel <- as.character(substitute(x))

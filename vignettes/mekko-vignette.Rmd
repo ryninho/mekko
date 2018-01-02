@@ -11,7 +11,7 @@ vignette: >
 
 ### Bar mekko graphics in R
 
-This is a quick introduction to the bar mekko function* in 
+This is a quick introduction to the bar mekko function* in
 the mekko package.
 
 Its main value is to add quantitative context to a bar graph, via bar width.
@@ -35,7 +35,6 @@ vignette("mekko-vignette")
 
 
 ```{r load-packages, warning = FALSE, message = FALSE}
-library(dplyr)
 library(ggplot2)
 library(mekko)
 library(tidyr)
@@ -54,7 +53,7 @@ profits <- data.frame(
 Let's take a look at profit margin by product using ggplot2.
 
 ```{r current-state-bad-example-bar-mekko}
-ggplot(profits, aes(x = product, y = profit_margin)) + 
+ggplot(profits, aes(x = product, y = profit_margin)) +
   geom_bar(stat = "identity")
 ```
 
@@ -64,12 +63,12 @@ knocking it out of the park. Maybe I can add revenue as the bar width so I know
 what's important here?
 
 ```{r ggplot-bar-width-fail}
-ggplot(profits, aes(x = product, y = profit_margin, width = revenue)) + 
-  geom_bar(stat = "identity") + 
+ggplot(profits, aes(x = product, y = profit_margin, width = revenue)) +
+  geom_bar(stat = "identity") +
   labs(title = "Variable bar width fail :(")
 ```
 
-Well shucks, that looks like some kind of Atari game airplane. Let's use the 
+Well shucks, that looks like some kind of Atari game airplane. Let's use the
 mekko package to put our margins in context.
 
 ```{r bar-mekko-example}
