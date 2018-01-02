@@ -1,4 +1,5 @@
 ^README\.md$
+^NEWS\.md$
 ^TODO\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
