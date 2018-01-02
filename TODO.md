@@ -50,4 +50,5 @@ Ideas
 and then copying that as the README. Need to update links to the .png files
 * Run checks with `devtools::check()` and `devtools::build_win()`
 * Don't submit changes to CRAN more than once every 1-2 months
+* Update NEWS.md
 * Update cran-comments.md. Can release with `devtools::release()`
