@@ -15,7 +15,8 @@ Install with:
 install.packages("mekko")
 ```
 
-You can also install the development version with `devtools::install_github('ryninho/mekko', build_vignettes = TRUE)`.
+You can also install the development version with 
+`devtools::install_github('ryninho/mekko', build_vignettes = TRUE)`.
 
 View examples with:
 
@@ -23,7 +24,7 @@ View examples with:
 vignette("mekko-vignette")
 ```
 
-
+First we'll load ggplot and mekko and create some example data.
 
 ```r
 library(ggplot2)
@@ -41,7 +42,7 @@ profits <- data.frame(
 
 ### Bar mekko
 
-Let's take a look at profit margin by product using ggplot2.
+Now let's take a look at profit margin by product using ggplot2.
 
 
 ```r
@@ -71,7 +72,7 @@ ggplot(profits, aes(x = product, y = profit_margin, width = revenue)) +
 
 ![](mekko-vignette_files/figure-html/ggplot-bar-width-fail-1.png)<!-- -->
 
-Well shucks, that looks like some kind of Atari game airplane. Let's use the
+Well shucks, that looks like some kind of Atari graphics airplane. Let's use the
 mekko package to put our margins in context.
 
 
@@ -82,9 +83,9 @@ bmx
 
 ![](mekko-vignette_files/figure-html/bar-mekko-example-1.png)<!-- -->
 
-Alright, so actually the weak margins on sprockets are worth as much focus as
-the problem with whosits. Also, no high-fives for margins on the whatsits until
-we triple sales of them.
+Alright, so actually the weak profit margins on sprockets may be worth nearly as 
+much focus as the problem with whosits. Also, no high-fives for margins on the 
+whatsits until we triple sales of them.
 
 Those labels are a little close together- this is a ggplot object so let's use
 the usual method of rotating the axes.
@@ -98,4 +99,6 @@ bmx + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ### Appendix
 
-* This package originally included a marimekko function as well, but the latter was discovered to be well covered in [other](https://CRAN.R-project.org/package=ggmosaic/vignettes/ggmosaic.html) [packages](https://www.semanticscholar.org/paper/Product-Plots-Wickham-Hofmann/0598a59354cb96161d68dab91fb0de21fb8671fd/figure/6), so it was removed to simplify maintenance.
+* This package originally included a marimekko function as well, but the latter 
+was discovered to be well covered in [other](https://CRAN.R-project.org/package=ggmosaic/vignettes/ggmosaic.html) [packages](https://www.semanticscholar.org/paper/Product-Plots-Wickham-Hofmann/0598a59354cb96161d68dab91fb0de21fb8671fd/figure/6), so it was removed to simplify maintenance
+* While the barmekko is a ggplot object, your mileage may vary when attempting operations that normally would work on a ggplot object, as the data frame is deconstructed in the process of creating the graph
