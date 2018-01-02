@@ -47,4 +47,7 @@ Ideas
 
 #### Coming back to this project
 * Can update README by running the vignette rmarkdown file with output github_document
-and then copying that as the README. Need to update references to the .png files.
+and then copying that as the README. Need to update links to the .png files
+* Run checks with `devtools::check()` and `devtools::build_win()`
+* Don't submit changes to CRAN more than once every 1-2 months
+* Update cran-comments.md. Can release with `devtools::release()`
