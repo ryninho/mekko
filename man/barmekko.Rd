@@ -32,7 +32,7 @@ df <- data.frame(
   )
 barmekko(df, region, avg_margin, sales)
 barmekko(df, region, avg_margin, sales) + labs(title = 'Margins by Region')
-barmekko(arrange(df, -sales), region, avg_margin, sales)
-barmekko(arrange(df, -avg_margin), region, avg_margin, sales)
+barmekko(df[order(-df$sales),], region, avg_margin, sales)
+barmekko(df[order(-df$avg_margin),], region, avg_margin, sales)
 }
 

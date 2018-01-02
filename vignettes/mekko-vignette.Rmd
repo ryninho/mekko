@@ -37,7 +37,6 @@ vignette("mekko-vignette")
 ```{r load-packages, warning = FALSE, message = FALSE}
 library(ggplot2)
 library(mekko)
-library(tidyr)
 ```
 
 ```{r create-example-data}

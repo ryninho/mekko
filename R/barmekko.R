@@ -46,7 +46,7 @@ barmekko <- function(data, x, y, width, values = FALSE) {
     ggplot2::guides(fill = ggplot2::guide_legend(title = xlabel))
   )
   if(values) {
-    p + ggplot2::geom_text(aes(x = pos, y = 0, label = y, vjust = -0.5))
+    p + ggplot2::geom_text(ggplot2::aes(x = pos, y = 0, label = y, vjust = -0.5))
   } else {
     p
   }
