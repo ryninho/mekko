@@ -10,6 +10,9 @@ Branch idea: Only barmekko
 Error: could not find function "labs"
 * Can I get rid of the dplyr import without marimekko (probably need to change the demo?)
 
+Reincorporating Marimekko:
+* Point out problem with ggmosaic and product plots: They want to leave space for null combinations (is this an option I can influence?)
+
 Bugs
 * arrange() doesn't lead to properly sorted marimekko (ignores sort)
 * suppress warning re: stacking in barmekko (or just replace geom_bar)
