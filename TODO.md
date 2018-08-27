@@ -43,6 +43,7 @@ https://cpsievert.github.io/plotly_book/extending-ggplotly.html)
 * write tests and include wider array of examples
 * get package listed on CRAN. Check that it passes this before submitting: https://github.com/softwaredeng/RRF/blob/master/instruction.txt#L5
 * allow option to display raw values, categories or percentages of total
+* add arrange example
 
 Ideas
 * replace do() with something from purrr()
