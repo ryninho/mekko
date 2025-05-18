@@ -91,6 +91,5 @@ bmx + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ### Appendix
 
-* This package originally included a marimekko function as well, but the latter 
-was discovered to be well covered in [other](https://CRAN.R-project.org/package=ggmosaic/vignettes/ggmosaic.html) [packages](https://www.semanticscholar.org/paper/Product-Plots-Wickham-Hofmann/0598a59354cb96161d68dab91fb0de21fb8671fd/figure/6), so it was removed to simplify maintenance
+* The package now includes `marimekko()` to create 100% stacked mekko charts
 * While the barmekko is a ggplot object, your mileage may vary when attempting operations that normally would work on a ggplot object, as the data frame is deconstructed in the process of creating the graph
