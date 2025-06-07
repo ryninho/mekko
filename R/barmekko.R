@@ -3,7 +3,12 @@
 #' @param width A numeric vector of bar widths.
 #' @return A numeric vector of bar positions.
 positions <- function(width) {
-  0.5 * (cumsum(width) + cumsum(c(0, width[-length(width)])))
+  # handle empty input gracefully
+  if (length(width) == 0) {
+    return(numeric())
+  }
+  # bar centers are at cumulative sums minus half the bar width
+  cumsum(width) - width / 2
 }
 
 #' Create a bar mekko plot.
